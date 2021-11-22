@@ -123,6 +123,7 @@
             this.listView1.Size = new System.Drawing.Size(733, 486);
             this.listView1.TabIndex = 19;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // textBox3
             // 
@@ -180,6 +181,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Connect";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,11 +196,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        public System.Windows.Forms.ListView listView1;
     }
 }
 

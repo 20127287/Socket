@@ -18,7 +18,7 @@ namespace TCPClient
         private int buffer;
         private byte[] buffers;
 
-        public Client(IPAddress ip,int port, int size=5000)
+        public Client(IPAddress ip, int port, int size = 5000)
         {
             IP = ip;
             Port = port;
@@ -27,8 +27,7 @@ namespace TCPClient
         }
 
         public void Connect()
-        {
-           
+        {           
             try
             {
 
@@ -41,7 +40,6 @@ namespace TCPClient
                 MessageBox.Show("Không thể kết nối với server!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
         }
 
 
@@ -54,19 +52,15 @@ namespace TCPClient
             //Recieve();
         }
         //tai anh
-        
-
-        
 
         //Nhan thong tin tu server
-        void Recieve()
+        public byte[] Recieve()
         {
             byte[] data = new byte[1024 * 5000];
             socket.Receive(data);
 
-            string req = Encoding.UTF8.GetString(data);
-            
-            listView1.Items.Add(new ListViewItem() { Text = req });
+            return data;
         }
+
     }
 }

@@ -22,13 +22,8 @@ namespace TCPClient
             InitializeComponent();
         }
 
-        //IPEndPoint IP;
-        //Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-        //Client sv = new Client(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text));
         public void Connect(object sender, EventArgs e)
         {
-
-            //Client client = new Client(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text));
             client = new Client(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text));
             client.Connect();
         }
@@ -93,13 +88,16 @@ namespace TCPClient
         private void Display(object sender, EventArgs e)
         {
             client.Send("Display");
+            
             //client.Send(buf);
             //Nhan lai thong tin tu server
+
             Recieve();
         }
         //tai anh
         private void LoadAvata(object sender, EventArgs e)
         {
+            
             client.Send("LoadAvata");
             //Nhan lai thong tin tu server
             Recieve();
@@ -117,8 +115,20 @@ namespace TCPClient
         void Recieve()
         {
             byte[] data = new byte[1024 * 5000];
+            data = client.Recieve();
             string req = Encoding.UTF8.GetString(data);
+
             listView1.Items.Add(new ListViewItem() { Text = req });
+        }
+
+        public void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         //void AddMessage(byte[] s)
