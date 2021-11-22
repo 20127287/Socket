@@ -1,0 +1,31 @@
+D:\MangMayTinh\TCPClient\bin\Debug\TCPClient.exe.config
+D:\MangMayTinh\TCPClient\bin\Debug\TCPClient.exe
+D:\MangMayTinh\TCPClient\bin\Debug\TCPClient.pdb
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.Client.resources
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.Form1.resources
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.Properties.Resources.resources
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.csproj.GenerateResource.cache
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.csproj.CoreCompileInputs.cache
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.exe
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.pdb
+D:\MangMayTinh\TCPClient\obj\Debug\TCPClient.csprojAssemblyReference.cache
+C:\Users\ACER\Desktop\Socket\TCPClient\bin\Debug\TCPClient.exe.config
+C:\Users\ACER\Desktop\Socket\TCPClient\bin\Debug\TCPClient.exe
+C:\Users\ACER\Desktop\Socket\TCPClient\bin\Debug\TCPClient.pdb
+C:\Users\ACER\Desktop\Socket\TCPClient\obj\Debug\TCPClient.csprojAssemblyReference.cache
+C:\Users\ACER\Desktop\Socket\TCPClient\obj\Debug\TCPClient.Form1.resources
+C:\Users\ACER\Desktop\Socket\TCPClient\obj\Debug\TCPClient.Properties.Resources.resources
+C:\Users\ACER\Desktop\Socket\TCPClient\obj\Debug\TCPClient.csproj.GenerateResource.cache
+C:\Users\ACER\Desktop\Socket\TCPClient\obj\Debug\TCPClient.csproj.CoreCompileInputs.cache
+C:\Users\ACER\Desktop\Socket\TCPClient\obj\Debug\TCPClient.exe
+C:\Users\ACER\Desktop\Socket\TCPClient\obj\Debug\TCPClient.pdb
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\bin\Debug\TCPClient.exe.config
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\bin\Debug\TCPClient.exe
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\bin\Debug\TCPClient.pdb
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\obj\Debug\TCPClient.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\obj\Debug\TCPClient.Form1.resources
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\obj\Debug\TCPClient.Properties.Resources.resources
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\obj\Debug\TCPClient.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\obj\Debug\TCPClient.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\obj\Debug\TCPClient.exe
+C:\Users\Admin\Desktop\mạng 1\Socket\TCPClient\obj\Debug\TCPClient.pdb
