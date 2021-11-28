@@ -98,3 +98,28 @@ C:\Users\ACER\Desktop\MMT2\Socket\TCPServer\obj\Debug\Sever.csproj.CoreCompileIn
 C:\Users\ACER\Desktop\MMT2\Socket\TCPServer\obj\Debug\Sever.csproj.CopyComplete
 C:\Users\ACER\Desktop\MMT2\Socket\TCPServer\obj\Debug\Project1.exe
 C:\Users\ACER\Desktop\MMT2\Socket\TCPServer\obj\Debug\Project1.pdb
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\packages\RavenDB.Database.3.5.9\tools\Raven.Studio.Html5.zip
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Project1.exe.config
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Project1.exe
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Project1.pdb
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\BouncyCastle.Crypto.dll
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Newtonsoft.Json.dll
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Abstractions.dll
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.dll
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Database.dll
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\BouncyCastle.Crypto.xml
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Newtonsoft.Json.xml
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Abstractions.pdb
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Abstractions.xml
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.pdb
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.xml
+E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Database.pdb
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.AssemblyReference.cache
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.Form1.resources
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.Properties.Resources.resources
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.GenerateResource.cache
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.CoreCompileInputs.cache
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.CopyComplete
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.exe
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.pdb
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.SuggestedBindingRedirects.cache

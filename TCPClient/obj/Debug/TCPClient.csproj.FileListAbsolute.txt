@@ -123,3 +123,45 @@ C:\Users\ACER\Desktop\MMT2\Socket\TCPClient\obj\Debug\TCPClient.csproj.CoreCompi
 C:\Users\ACER\Desktop\MMT2\Socket\TCPClient\obj\Debug\TCPClient.csproj.CopyComplete
 C:\Users\ACER\Desktop\MMT2\Socket\TCPClient\obj\Debug\TCPClient.exe
 C:\Users\ACER\Desktop\MMT2\Socket\TCPClient\obj\Debug\TCPClient.pdb
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\TCPClient.exe.config
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\TCPClient.exe
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\TCPClient.pdb
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.AWT.WinForms.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Beans.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Charsets.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Cldrdata.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Corba.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Core.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Jdbc.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Localedata.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Management.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Media.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Misc.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Naming.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Nashorn.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Remoting.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Security.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.SwingAWT.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Text.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Tools.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.Util.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.XML.API.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.XML.Bind.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.XML.Crypto.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.XML.Parse.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.XML.Transform.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.XML.WebServices.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.OpenJDK.XML.XPath.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.Runtime.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\IKVM.Runtime.JNI.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\Newtonsoft.Json.dll
+E:\Data\MMT\Đồ án\Socket\TCPClient\bin\Debug\Newtonsoft.Json.xml
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.csproj.AssemblyReference.cache
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.Form1.resources
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.Properties.Resources.resources
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.csproj.GenerateResource.cache
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.csproj.CoreCompileInputs.cache
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.csproj.CopyComplete
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.exe
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.pdb
+E:\Data\MMT\Đồ án\Socket\TCPClient\obj\Debug\TCPClient.csproj.SuggestedBindingRedirects.cache
