@@ -21,6 +21,9 @@ namespace TCPClient
     {
         Client client;
         private bool run = false;
+        List<PhoneBookClient> phoneBookClients = new List<PhoneBookClient>();
+        int i;
+        int count;
 
         class PhoneBookClient
         {
@@ -51,10 +54,10 @@ namespace TCPClient
             run = true;
 
         }
-        
-     
 
-    private void Disconnect(object sender, EventArgs e)
+
+
+        private void Disconnect(object sender, EventArgs e)
         {
             if (run == true)
             {
@@ -66,63 +69,74 @@ namespace TCPClient
             else
                 MessageBox.Show("Chưa kết nối server");
         }
-    
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+
+        //************************************************************************
+
+        private void textBox1_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
+            if (textBox1.Text != "")
                 textBox1.ForeColor = Color.Black;
-                textBox2.ForeColor = Color.Black;
-                textBox1.Text = "127.0.0.1";
-                textBox2.Text = "8080";
-
-            }
         }
 
-        private void textBox2_Click_1(object sender, EventArgs e)
+        private void textBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (textBox2.Text != "Input Port") return;
-            textBox2.Text = " ";
-            textBox2.ForeColor = Color.Black;
-        }
-
-        private void textBox1_Click_1(object sender, EventArgs e)
-        {
-            if (textBox1.Text != "Input IP") return;
-            textBox1.Text = " ";
-            textBox1.ForeColor = Color.Black;
+            if (textBox1.Text == "Nhập IP")
+                textBox1.Text = "";
         }
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
-            if (textBox1.Text != "") return;
+            if (textBox1.Text == "")
+                textBox1.Text = "Nhập IP";
             textBox1.ForeColor = Color.Gray;
-            textBox1.Text = "Input IP";
+        }
+        //************************************************************************
+
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text != "")
+                textBox2.ForeColor = Color.Black;
         }
 
-        private void textBox2_Leave_1(object sender, EventArgs e)
+        private void textBox2_MouseClick(object sender, MouseEventArgs e)
         {
-            if (textBox2.Text != "") return;
-            textBox2.ForeColor = Color.Gray;
-            textBox2.Text = "Input Port";
+            if (textBox2.Text == "Nhập Port")
+                textBox2.Text = "";
         }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "")
+                textBox2.Text = "Nhập Port";
+            textBox2.ForeColor = Color.Gray;
+        }
+        //************************************************************************
+
 
         public void Display(object sender, EventArgs e)
         {
             client.Send("Display");
 
-            List<PhoneBookClient> phoneBookClients = new List<PhoneBookClient>();
-
-            string convert =Encoding.UTF8.GetString(client.Recieve());
+            string convert = Encoding.UTF8.GetString(client.Recieve());
 
             phoneBookClients = JsonConvert.DeserializeObject<List<PhoneBookClient>>(convert);
 
-            showObject(phoneBookClients[2]);
+            i = 0;
+            count = phoneBookClients.Count;
+
+            showObject(phoneBookClients[i]);
+
+            if (count > 1) Next.Enabled = true;
+            Back.Enabled = false;
+
+            ord.Visible = true;
+            ord.Text = (i + 1).ToString() + "/" + count.ToString();
         }  
         //gui ma so can tìm kiem
         private void Search(object sender, EventArgs e)
-        {            
+        {
             client.Send(SearchTextBox.Text);
 
             //Nhan lai thong tin tu server
@@ -132,6 +146,9 @@ namespace TCPClient
             phoneBookClient = JsonConvert.DeserializeObject<PhoneBookClient>(data);
 
             showObject(phoneBookClient);
+
+            Next.Enabled = Back.Enabled = false;
+            ord.Visible = false;
         }
 
         private void showObject(PhoneBookClient phoneBookClient)
@@ -176,6 +193,32 @@ namespace TCPClient
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+            textBox1.Text = "127.0.0.1";
+            textBox2.Text = "8080";
+        }
+
+        private void Next_Click(object sender, EventArgs e)
+        {
+            Back.Enabled = true;
+
+            showObject(phoneBookClients[++i]);
+            ord.Text = (i + 1).ToString() + "/" + count.ToString();
+
+            if (i == count - 1) Next.Enabled = false;
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            Next.Enabled = true;
+
+            showObject(phoneBookClients[--i]);
+            ord.Text = (i + 1).ToString() + "/" + count.ToString();
+
+            if (i == 0) Back.Enabled = false;
         }
     } 
 }

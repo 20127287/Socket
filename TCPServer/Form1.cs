@@ -24,7 +24,7 @@ namespace Project1
         {
             sv = new Server(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text), "", 8 * 1024);
             sv.Start();
-            MessageBox.Show("server dang chay");
+            MessageBox.Show("Server đang chạy");
             button1.Enabled = false;
             button2.Enabled = true;
             run = true;
@@ -42,60 +42,51 @@ namespace Project1
             else
                 MessageBox.Show("Chưa tạo kết nối");
         }
-
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text != "Input IP") return;
-            textBox1.Text = " ";
-            textBox1.ForeColor = Color.Black;
+		private void button3_Click(object sender, EventArgs e)
+		{
+            textBox1.Text = "127.0.0.1";
+            textBox2.Text = "8080";
         }
+		//************************************************************************
 
-        private void textBox2_Click(object sender, EventArgs e)
-        {
-            if (textBox2.Text != "Input Port") return;
-            textBox2.Text = " ";
-            textBox2.ForeColor = Color.Black;
-        }
+		private void textBox1_Click(object sender, EventArgs e)
+		{
+			if (textBox1.Text != "")
+				textBox1.ForeColor = Color.Black;
+		}
 
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (textBox1.Text != "") return;
-            textBox1.ForeColor = Color.Gray;
-            textBox1.Text = "Input IP";
-            
-        }
+		private void textBox1_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (textBox1.Text == "Nhập IP")
+				textBox1.Text = "";
+		}
 
-        private void textBox2_Leave_1(object sender, EventArgs e)
-        {
-            if (textBox2.Text != "") return;
-            textBox2.ForeColor = Color.Gray;
-            textBox2.Text = "Input Port";
-        }
+		private void textBox1_Leave(object sender, EventArgs e)
+		{
+			if (textBox1.Text == "")
+				textBox1.Text = "Nhập IP";
+			textBox1.ForeColor = Color.Gray;
+		}
+		//************************************************************************
 
-        private void Automatic(object sender, EventArgs e)
-        {
-            if(checkBox1.Checked)
-            {
-                textBox1.ForeColor = Color.Black;
-                textBox2.ForeColor = Color.Black;
-                textBox1.Text = "127.0.0.1";
-                textBox2.Text = "8080";
-            }    
-        }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+		private void textBox2_Click(object sender, EventArgs e)
+		{
+			if (textBox2.Text != "")
+				textBox2.ForeColor = Color.Black;
+		}
 
-        }
+		private void textBox2_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (textBox2.Text == "Nhập Port")
+				textBox2.Text = "";
+		}
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
+		private void textBox2_Leave(object sender, EventArgs e)
+		{
+			if (textBox2.Text == "")
+				textBox2.Text = "Nhập Port";
+			textBox2.ForeColor = Color.Gray;
+		}
+	}
 }
