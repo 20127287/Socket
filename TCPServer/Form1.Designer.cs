@@ -1,6 +1,6 @@
 ﻿namespace Project1
 {
-    partial class Form1
+    partial class TCPServer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,109 +28,119 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TCPServer));
+            this.StartButton = new System.Windows.Forms.Button();
+            this.IPLabel = new System.Windows.Forms.Label();
+            this.PortLabel = new System.Windows.Forms.Label();
+            this.IPTextbox = new System.Windows.Forms.TextBox();
+            this.PortTextbox = new System.Windows.Forms.TextBox();
+            this.StopButton = new System.Windows.Forms.Button();
+            this.DefaultButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // StartButton
             // 
-            this.button1.Location = new System.Drawing.Point(256, 102);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 27);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartButton.Location = new System.Drawing.Point(256, 112);
+            this.StartButton.Margin = new System.Windows.Forms.Padding(4);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(88, 36);
+            this.StartButton.TabIndex = 0;
+            this.StartButton.Text = "Start";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // IPLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 35);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Host";
+            this.IPLabel.AutoSize = true;
+            this.IPLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IPLabel.Location = new System.Drawing.Point(31, 28);
+            this.IPLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.IPLabel.Name = "IPLabel";
+            this.IPLabel.Size = new System.Drawing.Size(91, 20);
+            this.IPLabel.TabIndex = 2;
+            this.IPLabel.Text = "IP Address";
             // 
-            // label2
+            // PortLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 35);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Port";
+            this.PortLabel.AutoSize = true;
+            this.PortLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PortLabel.Location = new System.Drawing.Point(219, 28);
+            this.PortLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PortLabel.Name = "PortLabel";
+            this.PortLabel.Size = new System.Drawing.Size(40, 20);
+            this.PortLabel.TabIndex = 3;
+            this.PortLabel.Text = "Port";
             // 
-            // textBox1
+            // IPTextbox
             // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(34, 56);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.TabStop = false;
-            this.textBox1.Text = "127.0.0.1";
-            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
-            this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.IPTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IPTextbox.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.IPTextbox.Location = new System.Drawing.Point(34, 52);
+            this.IPTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.IPTextbox.Name = "IPTextbox";
+            this.IPTextbox.Size = new System.Drawing.Size(121, 27);
+            this.IPTextbox.TabIndex = 4;
+            this.IPTextbox.TabStop = false;
+            this.IPTextbox.Text = "127.0.0.1";
+            this.IPTextbox.Click += new System.EventHandler(this.textBox1_Click);
+            this.IPTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
+            this.IPTextbox.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
-            // textBox2
+            // PortTextbox
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox2.Location = new System.Drawing.Point(223, 56);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 22);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "8080";
-            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
-            this.textBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox2_MouseClick);
-            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            this.PortTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PortTextbox.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.PortTextbox.Location = new System.Drawing.Point(223, 52);
+            this.PortTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.PortTextbox.Name = "PortTextbox";
+            this.PortTextbox.Size = new System.Drawing.Size(121, 27);
+            this.PortTextbox.TabIndex = 5;
+            this.PortTextbox.Text = "8080";
+            this.PortTextbox.Click += new System.EventHandler(this.textBox2_Click);
+            this.PortTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox2_MouseClick);
+            this.PortTextbox.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
-            // button2
+            // StopButton
             // 
-            this.button2.Location = new System.Drawing.Point(34, 102);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 27);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Stop";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.StopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StopButton.Location = new System.Drawing.Point(34, 112);
+            this.StopButton.Margin = new System.Windows.Forms.Padding(4);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(88, 36);
+            this.StopButton.TabIndex = 6;
+            this.StopButton.Text = "Stop";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // DefaultButton
             // 
-            this.button3.Location = new System.Drawing.Point(145, 102);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 27);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Default";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.DefaultButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DefaultButton.Location = new System.Drawing.Point(145, 112);
+            this.DefaultButton.Name = "DefaultButton";
+            this.DefaultButton.Size = new System.Drawing.Size(88, 36);
+            this.DefaultButton.TabIndex = 7;
+            this.DefaultButton.Text = "Default";
+            this.DefaultButton.UseVisualStyleBackColor = true;
+            this.DefaultButton.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Form1
+            // TCPServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 178);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DefaultButton);
+            this.Controls.Add(this.StopButton);
+            this.Controls.Add(this.PortTextbox);
+            this.Controls.Add(this.IPTextbox);
+            this.Controls.Add(this.PortLabel);
+            this.Controls.Add(this.IPLabel);
+            this.Controls.Add(this.StartButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
-            this.Text = "TCPsever";
+            this.Name = "TCPServer";
+            this.Text = "TCPSever";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,13 +148,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.Label IPLabel;
+        private System.Windows.Forms.Label PortLabel;
+        private System.Windows.Forms.TextBox IPTextbox;
+        private System.Windows.Forms.TextBox PortTextbox;
+        private System.Windows.Forms.Button StopButton;
+		private System.Windows.Forms.Button DefaultButton;
 	}
 }
 

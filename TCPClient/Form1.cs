@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 
 namespace TCPClient
 {    
-    public partial class Form1 : Form
+    public partial class TCPClient : Form
     {
         Client client;
         private bool run = false;
@@ -34,7 +34,7 @@ namespace TCPClient
             public byte[] avatar { get; set; }
         }
 
-        public Form1()
+        public TCPClient()
         {
             InitializeComponent();
         }
@@ -47,10 +47,10 @@ namespace TCPClient
 
             //Client client = new Client(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text));
             const Int32 sizePictureMax = 1000000000;
-            client = new Client(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text), sizePictureMax);
+            client = new Client(IPAddress.Parse(IPTextbox.Text), Int32.Parse(PortTextbox.Text), sizePictureMax);
             client.Connect();
-            button1.Enabled = false;
-            button2.Enabled = true;
+            ConnectButton.Enabled = false;
+            DisconnectedButton.Enabled = true;
             run = true;
 
         }
@@ -61,13 +61,13 @@ namespace TCPClient
         {
             if (run == true)
             {
-                button1.Enabled = true;
-                button2.Enabled = false;
+                ConnectButton.Enabled = true;
+                DisconnectedButton.Enabled = false;
                 MessageBox.Show("Đóng kết nối thành công");
                 this.Close();
             }
             else
-                MessageBox.Show("Chưa kết nối server");
+                MessageBox.Show("Chưa kết nối server!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 
@@ -75,42 +75,42 @@ namespace TCPClient
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "")
-                textBox1.ForeColor = Color.Black;
+            if (IPTextbox.Text != "")
+                IPTextbox.ForeColor = Color.Black;
         }
 
         private void textBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (textBox1.Text == "Nhập IP")
-                textBox1.Text = "";
+            if (IPTextbox.Text == "Nhập IP")
+                IPTextbox.Text = "";
         }
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
-                textBox1.Text = "Nhập IP";
-            textBox1.ForeColor = Color.Gray;
+            if (IPTextbox.Text == "")
+                IPTextbox.Text = "Nhập IP";
+            IPTextbox.ForeColor = Color.Gray;
         }
         //************************************************************************
 
 
         private void textBox2_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text != "")
-                textBox2.ForeColor = Color.Black;
+            if (PortTextbox.Text != "")
+                PortTextbox.ForeColor = Color.Black;
         }
 
         private void textBox2_MouseClick(object sender, MouseEventArgs e)
         {
-            if (textBox2.Text == "Nhập Port")
-                textBox2.Text = "";
+            if (PortTextbox.Text == "Nhập Port")
+                PortTextbox.Text = "";
         }
 
         private void textBox2_Leave(object sender, EventArgs e)
         {
-            if (textBox2.Text == "")
-                textBox2.Text = "Nhập Port";
-            textBox2.ForeColor = Color.Gray;
+            if (PortTextbox.Text == "")
+                PortTextbox.Text = "Nhập Port";
+            PortTextbox.ForeColor = Color.Gray;
         }
         //************************************************************************
 
@@ -128,11 +128,16 @@ namespace TCPClient
 
             showObject(phoneBookClients[i]);
 
-            if (count > 1) Next.Enabled = true;
-            Back.Enabled = false;
+            if (count > 1) NextButton.Enabled = true;
+            BackButton.Enabled = false;
 
             ord.Visible = true;
             ord.Text = (i + 1).ToString() + "/" + count.ToString();
+
+            GoTextbox.Enabled = true;
+            GoButton.Enabled = true;
+
+            DisplayButton.Enabled = false;
         }  
         //gui ma so can tìm kiem
         private void Search(object sender, EventArgs e)
@@ -147,8 +152,13 @@ namespace TCPClient
 
             showObject(phoneBookClient);
 
-            Next.Enabled = Back.Enabled = false;
+            NextButton.Enabled = BackButton.Enabled = false;
             ord.Visible = false;
+
+            GoTextbox.Enabled = false;
+            GoButton.Enabled = false;
+
+            DisplayButton.Enabled = true;
         }
 
         private void showObject(PhoneBookClient phoneBookClient)
@@ -160,65 +170,53 @@ namespace TCPClient
             pictureBox.Image = new Bitmap(Image.FromStream(new MemoryStream(phoneBookClient.avatar)), new Size(100, 100));
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LoadAvata(object sender, EventArgs e)
-        {
-            
-        }
-
-        public void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 		private void button3_Click(object sender, EventArgs e)
 		{
-            textBox1.Text = "127.0.0.1";
-            textBox2.Text = "8080";
+            IPTextbox.Text = "127.0.0.1";
+            PortTextbox.Text = "8080";
         }
 
         private void Next_Click(object sender, EventArgs e)
         {
-            Back.Enabled = true;
+            BackButton.Enabled = true;
 
             showObject(phoneBookClients[++i]);
             ord.Text = (i + 1).ToString() + "/" + count.ToString();
 
-            if (i == count - 1) Next.Enabled = false;
+            if (i == count - 1) NextButton.Enabled = false;
         }
 
         private void Back_Click(object sender, EventArgs e)
         {
-            Next.Enabled = true;
+            NextButton.Enabled = true;
 
             showObject(phoneBookClients[--i]);
             ord.Text = (i + 1).ToString() + "/" + count.ToString();
 
-            if (i == 0) Back.Enabled = false;
+            if (i == 0) BackButton.Enabled = false;
         }
-    } 
+
+        private void GoButton_Click(object sender, EventArgs e)
+        {
+            int tmp = Int32.Parse(GoTextbox.Text);
+            
+            if (tmp < 1 || tmp > count)
+                MessageBox.Show("Số vừa nhập không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            else
+            {
+                i = tmp - 1;
+                showObject(phoneBookClients[i]);
+                ord.Text = tmp.ToString() + "/" + count.ToString();
+
+                if (i == 0) BackButton.Enabled = false;
+                else BackButton.Enabled = true;
+
+                if (i == count - 1) NextButton.Enabled = false;
+                else NextButton.Enabled = true;
+            }
+
+            GoTextbox.Text = "";
+        }
+    }
 }
