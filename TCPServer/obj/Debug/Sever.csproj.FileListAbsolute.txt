@@ -115,7 +115,6 @@ E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.pdb
 E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.xml
 E:\Data\MMT\Đồ án\Socket\TCPServer\bin\Debug\Raven.Database.pdb
 E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.AssemblyReference.cache
-E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.Form1.resources
 E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.Properties.Resources.resources
 E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.GenerateResource.cache
 E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Sever.csproj.CoreCompileInputs.cache
@@ -148,3 +147,4 @@ E:\Data\MMT\Đồ án\TCPServer\obj\Debug\Sever.csproj.CopyComplete
 E:\Data\MMT\Đồ án\TCPServer\obj\Debug\Project1.exe
 E:\Data\MMT\Đồ án\TCPServer\obj\Debug\Project1.pdb
 E:\Data\MMT\Đồ án\TCPServer\obj\Debug\Project1.TCPServer.resources
+E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.TCPServer.resources
