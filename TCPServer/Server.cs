@@ -17,16 +17,24 @@ namespace Project1
 {
     class PhoneBookSever
     {
-        public Int64 code { get; set; }
+        public string code { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
         public string avatar { get; set; }
+        public PhoneBookSever()
+        {
+            code = "";
+            name = "";
+            phone = "";
+            email = "";
+            avatar = "";
+        }
     }
 
     class PhoneBookClient
     {
-        public Int64 code { get; set; }
+        public string code { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
@@ -34,6 +42,11 @@ namespace Project1
 
         public PhoneBookClient()
         {
+            code = "";
+            name = "";
+            phone = "";
+            email = "";
+            avatar = null;
         }
 
         public PhoneBookClient(PhoneBookSever phoneBookSever)
@@ -42,11 +55,18 @@ namespace Project1
             name = phoneBookSever.name;
             phone = phoneBookSever.phone;
             email = phoneBookSever.email;
-            
-            MemoryStream ms = new MemoryStream();
-            Bitmap bmp = new Bitmap(phoneBookSever.avatar);
-            bmp.Save(ms, ImageFormat.Jpeg);
-            avatar = ms.ToArray();
+                        
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                Bitmap bmp = new Bitmap(phoneBookSever.avatar);
+                bmp.Save(ms, ImageFormat.Jpeg);
+                avatar = ms.ToArray();
+            }
+            catch
+            {
+                avatar = null;
+            }            
         }
     }
 
@@ -69,8 +89,7 @@ namespace Project1
             db = _db;
             buffer = _buffer;
             request = new byte[buffer];
-            ClientSockets = new List<Socket>();
-            
+            ClientSockets = new List<Socket>();           
         }
 
         public void Start()
@@ -80,50 +99,80 @@ namespace Project1
             serverSocket.Listen(0);
             serverSocket.BeginAccept(AcceptCallBack, null);
         }
-        public void Close()
+        public void CloseAll()
         {
+            foreach (Socket socket in ClientSockets)
+                socket.Close();
+            ClientSockets.Clear(); 
             serverSocket.Close();
-
         }
 
         private void AcceptCallBack(IAsyncResult AR)
         {
-            Socket socket = serverSocket.EndAccept(AR);
-            ClientSockets.Add(socket);
-            socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
-            serverSocket.BeginAccept(AcceptCallBack, null);
+            try
+            {
+                Socket socket = serverSocket.EndAccept(AR);
+                ClientSockets.Add(socket);
+                socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
+                serverSocket.BeginAccept(AcceptCallBack, null);
+            }
+            catch
+            {
+
+            } 
         }
 
         private void ReceiveCallBack(IAsyncResult AR)
         {
+
             Socket socket = (Socket)AR.AsyncState;
             string req = readReques(AR, socket);
-            List<PhoneBookClient> phoneBookClients = new List<PhoneBookClient>();
-            
-            ReadJson("DB/DanhBa.json", phoneBookClients);
-
-            if (req == "Display")
+            if (req != null)
             {
-                string convert = JsonConvert.SerializeObject(phoneBookClients);
-              
-                socket.Send(Encoding.UTF8.GetBytes(convert));
-            }
-            else foreach (PhoneBookClient phoneBookClient in phoneBookClients)
-                    if (req == phoneBookClient.code.ToString())
-                    {
-                        string convert = JsonConvert.SerializeObject(phoneBookClient);
+                List<PhoneBookClient> phoneBookClients = new List<PhoneBookClient>();
 
-                        socket.Send(Encoding.UTF8.GetBytes(convert));
-                    }
+                ReadJson("DB/DanhBa.json", phoneBookClients);
+
+                if (req == "Display")
+                {
+                    string convert = JsonConvert.SerializeObject(phoneBookClients);
+
+                    socket.Send(Encoding.UTF8.GetBytes(convert));
+                }
+                else
+                {
+                    foreach (PhoneBookClient phoneBookClient in phoneBookClients)
+                        if (req == phoneBookClient.code)
+                        {
+                            string convert = JsonConvert.SerializeObject(phoneBookClient);
+                            socket.Send(Encoding.UTF8.GetBytes(convert));
+
+                            socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
+                            return;
+                        }
+                    socket.Send(Encoding.UTF8.GetBytes("false"));
+                    
+                }
+                socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
+            }
         }
 
+///////
         private string readReques(IAsyncResult AR, Socket socket)
-        {            
-            int received = socket.EndReceive(AR);
-            byte[] resbuffer = new byte[received];
-            Array.Copy(request, resbuffer, received);
-            string req = Encoding.UTF8.GetString(resbuffer);
-            return req;
+        {
+            try
+            {
+                int received = socket.EndReceive(AR);
+                byte[] resbuffer = new byte[received];
+                Array.Copy(request, resbuffer, received);
+                string req = Encoding.UTF8.GetString(resbuffer);
+                return req;
+            }
+            catch
+            {
+                socket.Close();
+            }
+            return null;
         }
 
         private void ReadJson (string address, List<PhoneBookClient> phoneBookClients)

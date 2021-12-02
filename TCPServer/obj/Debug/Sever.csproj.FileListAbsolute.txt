@@ -148,3 +148,26 @@ E:\Data\MMT\Đồ án\TCPServer\obj\Debug\Project1.exe
 E:\Data\MMT\Đồ án\TCPServer\obj\Debug\Project1.pdb
 E:\Data\MMT\Đồ án\TCPServer\obj\Debug\Project1.TCPServer.resources
 E:\Data\MMT\Đồ án\Socket\TCPServer\obj\Debug\Project1.TCPServer.resources
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\packages\RavenDB.Database.3.5.9\tools\Raven.Studio.Html5.zip
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Project1.exe.config
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Project1.exe
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Project1.pdb
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Abstractions.dll
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.dll
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Database.dll
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Abstractions.pdb
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Abstractions.xml
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.pdb
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Client.Lightweight.xml
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\bin\Debug\Raven.Database.pdb
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\obj\Debug\Sever.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\obj\Debug\Project1.TCPServer.resources
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\obj\Debug\Project1.Properties.Resources.resources
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\obj\Debug\Sever.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\obj\Debug\Sever.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\obj\Debug\Project1.exe
+C:\Users\Admin\Desktop\mạng\Socket\TCPServer\obj\Debug\Project1.pdb

@@ -16,7 +16,7 @@ using java.io;
 using Newtonsoft.Json;
 
 namespace TCPClient
-{    
+{
     public partial class TCPClient : Form
     {
         Client client;
@@ -27,11 +27,20 @@ namespace TCPClient
 
         class PhoneBookClient
         {
-            public Int64 code { get; set; }
+            public string code { get; set; }
             public string name { get; set; }
             public string phone { get; set; }
             public string email { get; set; }
             public byte[] avatar { get; set; }
+
+            public PhoneBookClient()
+            {
+                code = "";
+                name = "";
+                phone = "";
+                email = "";
+                avatar = null;
+            }
         }
 
         public TCPClient()
@@ -39,37 +48,38 @@ namespace TCPClient
             InitializeComponent();
         }
 
-        //IPEndPoint IP;
-        //Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-        //Client sv = new Client(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text));
         public void Connect(object sender, EventArgs e)
         {
-
-            //Client client = new Client(IPAddress.Parse(textBox1.Text), Int32.Parse(textBox2.Text));
             const Int32 sizePictureMax = 1000000000;
             client = new Client(IPAddress.Parse(IPTextbox.Text), Int32.Parse(PortTextbox.Text), sizePictureMax);
-            client.Connect();
-            ConnectButton.Enabled = false;
-            DisconnectedButton.Enabled = true;
-            run = true;
-
+            bool connect = client.Connect();
+            if (connect == true)
+            {
+                run = true;
+                ConnectButton.Enabled = false;
+                DefaultButton.Enabled = false;
+                DisconnectedButton.Enabled = true;
+                PortTextbox.Enabled = false;
+                IPTextbox.Enabled = false;
+            }
         }
-
-
 
         private void Disconnect(object sender, EventArgs e)
         {
             if (run == true)
             {
                 ConnectButton.Enabled = true;
+                DefaultButton.Enabled = true;
                 DisconnectedButton.Enabled = false;
-                MessageBox.Show("Đóng kết nối thành công");
+                PortTextbox.Enabled = true;
+                IPTextbox.Enabled = true;
+                MessageBox.Show("Đóng kết nối thành công", "THÔNG BÁO", MessageBoxButtons.OK);
+                run = false;
                 this.Close();
             }
             else
-                MessageBox.Show("Chưa kết nối server!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Chưa kết nối server!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
 
         //************************************************************************
 
@@ -91,6 +101,7 @@ namespace TCPClient
                 IPTextbox.Text = "Nhập IP";
             IPTextbox.ForeColor = Color.Gray;
         }
+
         //************************************************************************
 
 
@@ -112,53 +123,97 @@ namespace TCPClient
                 PortTextbox.Text = "Nhập Port";
             PortTextbox.ForeColor = Color.Gray;
         }
-        //************************************************************************
 
+        //************************************************************************
 
         public void Display(object sender, EventArgs e)
         {
-            client.Send("Display");
+            if (run == true)
+            {
+                SearchTextBox.Text = "Nhập code";
+                SearchTextBox.ForeColor = Color.Silver;
+                bool checkServer;
 
-            string convert = Encoding.UTF8.GetString(client.Recieve());
+                checkServer = client.Send(DisplayButton.Text);
 
-            phoneBookClients = JsonConvert.DeserializeObject<List<PhoneBookClient>>(convert);
+                if (checkServer == true)
+                {
 
-            i = 0;
-            count = phoneBookClients.Count;
+                    string convert = Encoding.UTF8.GetString(client.Recieve());
 
-            showObject(phoneBookClients[i]);
+                    phoneBookClients = JsonConvert.DeserializeObject<List<PhoneBookClient>>(convert);
 
-            if (count > 1) NextButton.Enabled = true;
-            BackButton.Enabled = false;
+                    i = 0;
+                    count = phoneBookClients.Count;
 
-            ord.Visible = true;
-            ord.Text = (i + 1).ToString() + "/" + count.ToString();
+                    showObject(phoneBookClients[i]);
 
-            GoTextbox.Enabled = true;
-            GoButton.Enabled = true;
+                    if (count > 1) NextButton.Enabled = true;
+                    BackButton.Enabled = false;
 
-            DisplayButton.Enabled = false;
-        }  
+                    ord.Visible = true;
+                    ord.Text = (i + 1).ToString() + "/" + count.ToString();
+
+                    GoTextbox.Enabled = true;
+                    GoButton.Enabled = true;
+                    GoTextbox.Enabled = true;
+                    DisplayButton.Enabled = false;
+                }
+                else MessageBox.Show("Không kết nối được với server!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else MessageBox.Show("Chưa tạo kết nối!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        } 
         //gui ma so can tìm kiem
         private void Search(object sender, EventArgs e)
         {
-            client.Send(SearchTextBox.Text);
+            if (run == true)
+            {
+                string information = SearchTextBox.Text;
+                bool check = false;
 
-            //Nhan lai thong tin tu server
-            string data = Encoding.UTF8.GetString(client.Recieve());
+                for (int i = 0; i < information.Length; i++)
+                    if (information[i] != ' ')
+                        check = true;
+                if (information == "Nhập code")
+                    check = false;
+                bool checkServer;
+                if (check)
+                    checkServer = client.Send(SearchTextBox.Text);
+                else
+                {
+                    MessageBox.Show("Bạn chưa nhập mã số", "CẢNH BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SearchTextBox.Text = "Nhập code";
+                    SearchTextBox.ForeColor = Color.Silver;
+                    return;
+                }
 
-            PhoneBookClient phoneBookClient = new PhoneBookClient();
-            phoneBookClient = JsonConvert.DeserializeObject<PhoneBookClient>(data);
+                if (checkServer == true)
+                {
 
-            showObject(phoneBookClient);
+                    //Nhan lai thong tin tu server
+                    byte[] recieve = client.Recieve();
+                    string data = Encoding.UTF8.GetString(recieve);
 
-            NextButton.Enabled = BackButton.Enabled = false;
-            ord.Visible = false;
+                    if (data != "false")
+                    {
+                        PhoneBookClient phoneBookClient = new PhoneBookClient();
+                        phoneBookClient = JsonConvert.DeserializeObject<PhoneBookClient>(data);
+                        showObject(phoneBookClient);
 
-            GoTextbox.Enabled = false;
-            GoButton.Enabled = false;
+                        NextButton.Enabled = BackButton.Enabled = false;
+                        ord.Visible = false;
 
-            DisplayButton.Enabled = true;
+                        GoTextbox.Enabled = false;
+                        GoButton.Enabled = false;
+                        GoTextbox.Enabled = false;
+                        DisplayButton.Enabled = true;
+                    }
+                    else MessageBox.Show("Không có trong danh sách", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else MessageBox.Show("Không kết nối được với server!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else MessageBox.Show("Chưa tạo kết nối!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void showObject(PhoneBookClient phoneBookClient)
@@ -167,7 +222,9 @@ namespace TCPClient
             NameView.Text = phoneBookClient.name;
             PhoneView.Text = phoneBookClient.phone;
             EmailView.Text = phoneBookClient.email;
-            pictureBox.Image = new Bitmap(Image.FromStream(new MemoryStream(phoneBookClient.avatar)), new Size(100, 100));
+            if (phoneBookClient.avatar != null)
+                pictureBox.Image = new Bitmap(Image.FromStream(new MemoryStream(phoneBookClient.avatar)), new Size(300, 300));
+            else pictureBox.Image = pictureBox.ErrorImage;
         }
 
 		private void button3_Click(object sender, EventArgs e)
@@ -198,25 +255,119 @@ namespace TCPClient
 
         private void GoButton_Click(object sender, EventArgs e)
         {
-            int tmp = Int32.Parse(GoTextbox.Text);
-            
-            if (tmp < 1 || tmp > count)
-                MessageBox.Show("Số vừa nhập không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            else
+            try
             {
-                i = tmp - 1;
-                showObject(phoneBookClients[i]);
-                ord.Text = tmp.ToString() + "/" + count.ToString();
+                int tmp = Int32.Parse(GoTextbox.Text);
 
-                if (i == 0) BackButton.Enabled = false;
-                else BackButton.Enabled = true;
+                if (tmp < 1 || tmp > count)
+                    MessageBox.Show("Số vừa nhập không hợp lệ!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                if (i == count - 1) NextButton.Enabled = false;
-                else NextButton.Enabled = true;
+                else
+                {
+                    i = tmp - 1;
+                    showObject(phoneBookClients[i]);
+                    ord.Text = tmp.ToString() + "/" + count.ToString();
+
+                    if (i == 0) BackButton.Enabled = false;
+                    else BackButton.Enabled = true;
+
+                    if (i == count - 1) NextButton.Enabled = false;
+                    else NextButton.Enabled = true;
+                }
+
+                GoTextbox.Text = "";
             }
-
-            GoTextbox.Text = "";
+            catch
+            {
+                MessageBox.Show("Bước nhảy không hợp lệ!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void SearchTextBox_Enter(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == "Nhập code")
+                SearchTextBox.Text = "";
+            SearchTextBox.ForeColor = Color.Black;
+        }
+
+        private void SearchTextBox_Leave(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == "")
+            {
+                SearchTextBox.Text = "Nhập code";
+                SearchTextBox.ForeColor = Color.Silver;
+            }
+        }
+
+        private void GoTextbox_Enter(object sender, EventArgs e)
+        {
+            if (GoTextbox.Text == "Nhập vị trí")
+                GoTextbox.Text = "";
+            GoTextbox.ForeColor = Color.Black;
+        }
+
+        private void GoTextbox_Leave(object sender, EventArgs e)
+        {
+            if (GoTextbox.Text == "")
+            {
+                GoTextbox.Text = "Nhập vị trí";
+                GoTextbox.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TCPClient_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (run == true)
+            {
+                ConnectButton.Enabled = true;
+                DefaultButton.Enabled = true;
+                DisconnectedButton.Enabled = false;
+                PortTextbox.Enabled = true;
+                IPTextbox.Enabled = true;
+                run = false;
+                this.Close();
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////
+
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CodeView_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TCPClient_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ord_TextChanged(object sender, EventArgs e)
+        {
+
+        }        
+
+        private void searchTextBox(object sender, EventArgs e)
+        {
+        }
+
+        private void PortTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchTextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void SearchTextBox_Click(object sender, EventArgs e)
+        {
+            
+        }       
     }
 }
