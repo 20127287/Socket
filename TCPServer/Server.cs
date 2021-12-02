@@ -17,16 +17,24 @@ namespace Project1
 {
     class PhoneBookSever
     {
-        public Int64 code { get; set; }
+        public string code { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
         public string avatar { get; set; }
+        public PhoneBookSever()
+        {
+            this.code = "";
+            this.name = "";
+            this.phone = "";
+            this.email = "";
+            this.avatar = "";
+        }
     }
 
     class PhoneBookClient
     {
-        public Int64 code { get; set; }
+        public string code { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
@@ -34,6 +42,10 @@ namespace Project1
 
         public PhoneBookClient()
         {
+            this.code = "";
+            this.name = "";
+            this.phone = "";
+            this.email = "";
         }
 
         public PhoneBookClient(PhoneBookSever phoneBookSever)
@@ -42,11 +54,21 @@ namespace Project1
             name = phoneBookSever.name;
             phone = phoneBookSever.phone;
             email = phoneBookSever.email;
-            
+
             MemoryStream ms = new MemoryStream();
-            Bitmap bmp = new Bitmap(phoneBookSever.avatar);
-            bmp.Save(ms, ImageFormat.Jpeg);
-            avatar = ms.ToArray();
+            try
+            {                
+                Bitmap bmp = new Bitmap(phoneBookSever.avatar);
+                bmp.Save(ms, ImageFormat.Jpeg);
+                avatar = ms.ToArray();
+            }
+            catch
+            {
+                Bitmap bmp = new Bitmap("picture error.png");
+                bmp.Save(ms, ImageFormat.Jpeg);
+                avatar = ms.ToArray();
+            }
+            
         }
     }
 
@@ -83,7 +105,6 @@ namespace Project1
         public void Close()
         {
             serverSocket.Close();
-
         }
 
         private void AcceptCallBack(IAsyncResult AR)
@@ -105,16 +126,24 @@ namespace Project1
             if (req == "Display")
             {
                 string convert = JsonConvert.SerializeObject(phoneBookClients);
-              
+
                 socket.Send(Encoding.UTF8.GetBytes(convert));
+
+                socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
             }
-            else foreach (PhoneBookClient phoneBookClient in phoneBookClients)
-                    if (req == phoneBookClient.code.ToString())
+            else
+            {
+                foreach (PhoneBookClient phoneBookClient in phoneBookClients)
+                    if (req == phoneBookClient.code)
                     {
                         string convert = JsonConvert.SerializeObject(phoneBookClient);
-
                         socket.Send(Encoding.UTF8.GetBytes(convert));
+                        return;
                     }
+                socket.Send(Encoding.UTF8.GetBytes("false"));
+            }
+
+            socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
         }
 
         private string readReques(IAsyncResult AR, Socket socket)

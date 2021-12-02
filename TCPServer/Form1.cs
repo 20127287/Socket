@@ -18,27 +18,32 @@ namespace Project1
         {
             InitializeComponent();
         }
-        Server sv;
+        Server server;
         private bool run = false;
         private void button1_Click(object sender, EventArgs e)
         {
-            sv = new Server(IPAddress.Parse(IPTextbox.Text), Int32.Parse(PortTextbox.Text), "", 8 * 1024);
-            sv.Start();
-            MessageBox.Show("Server đang chạy");
+			server = new Server(IPAddress.Parse(IPTextbox.Text), Int32.Parse(PortTextbox.Text), "", 8 * 1024);
+            server.Start();
+			MessageBox.Show("Server đang chạy", "THÔNG BÁO", MessageBoxButtons.OK);
             StartButton.Enabled = false;
+			DefaultButton.Enabled = false;
             StopButton.Enabled = true;
+			IPTextbox.Enabled = false;
+			PortTextbox.Enabled = false;
             run = true;
         }
         private void button2_Click(object sender, EventArgs e)
-        {
-            
+        {            
             if (run == true)
             {
-                sv.Close();
                 StartButton.Enabled = true;
-                StopButton.Enabled = false;
-                MessageBox.Show("Đóng kết nối thành công");
-            }
+				DefaultButton.Enabled = true;
+				StopButton.Enabled = false;
+				IPTextbox.Enabled = true;
+				PortTextbox.Enabled = true;
+				MessageBox.Show("Đóng kết nối thành công", "THÔNG BÁO", MessageBoxButtons.OK);
+				server.Close();
+			}
             else
 				MessageBox.Show("Chưa tạo kết nối!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
@@ -88,5 +93,10 @@ namespace Project1
 				PortTextbox.Text = "Nhập Port";
 			PortTextbox.ForeColor = Color.Gray;
 		}
-	}
+
+        private void IPTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
