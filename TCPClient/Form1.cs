@@ -214,6 +214,9 @@ namespace TCPClient
                 else MessageBox.Show("Không kết nối được với server!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else MessageBox.Show("Chưa tạo kết nối!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            SearchTextBox.ForeColor = Color.Gray;
+            SearchTextBox.Text = "Nhập code";
         }
 
         private void showObject(PhoneBookClient phoneBookClient)
@@ -275,7 +278,8 @@ namespace TCPClient
                     else NextButton.Enabled = true;
                 }
 
-                GoTextbox.Text = "";
+                GoTextbox.ForeColor = Color.Gray;
+                GoTextbox.Text = "Nhập vị trí";
             }
             catch
             {
@@ -328,46 +332,5 @@ namespace TCPClient
                 this.Close();
             }
         }
-
-        ////////////////////////////////////////////////////////////////
-
-
-        private void pictureBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CodeView_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TCPClient_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ord_TextChanged(object sender, EventArgs e)
-        {
-
-        }        
-
-        private void searchTextBox(object sender, EventArgs e)
-        {
-        }
-
-        private void PortTextbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SearchTextBox_MouseClick(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void SearchTextBox_Click(object sender, EventArgs e)
-        {
-            
-        }       
     }
 }
