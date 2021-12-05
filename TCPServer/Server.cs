@@ -126,7 +126,7 @@ namespace Project1
         {
 
             Socket socket = (Socket)AR.AsyncState;
-            string req = readReques(AR, socket);
+            string req = readRequest(AR, socket);
             if (req != null)
             {
                 List<PhoneBookClient> phoneBookClients = new List<PhoneBookClient>();
@@ -158,7 +158,7 @@ namespace Project1
         }
 
 ///////
-        private string readReques(IAsyncResult AR, Socket socket)
+        private string readRequest(IAsyncResult AR, Socket socket)
         {
             try
             {
@@ -175,7 +175,7 @@ namespace Project1
             return null;
         }
 
-        private void ReadJson (string address, List<PhoneBookClient> phoneBookClients)
+        private void ReadJson(string address, List<PhoneBookClient> phoneBookClients)
         {
             string data = System.IO.File.ReadAllText(address);
             List<PhoneBookSever> phoneBookSevers = JsonConvert.DeserializeObject<List<PhoneBookSever>>(data);            
