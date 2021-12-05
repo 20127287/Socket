@@ -65,7 +65,7 @@
             this.PortTextbox.Name = "PortTextbox";
             this.PortTextbox.Size = new System.Drawing.Size(121, 27);
             this.PortTextbox.TabIndex = 2;
-            this.PortTextbox.Text = "8080";
+            this.PortTextbox.Text = "4004";
             this.PortTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.PortTextbox.Click += new System.EventHandler(this.textBox2_Click);
             this.PortTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox2_MouseClick);
@@ -80,7 +80,7 @@
             this.IPTextbox.Name = "IPTextbox";
             this.IPTextbox.Size = new System.Drawing.Size(121, 27);
             this.IPTextbox.TabIndex = 1;
-            this.IPTextbox.Text = "127.0.0.1";
+            this.IPTextbox.Text = "127.1.1.2";
             this.IPTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.IPTextbox.Click += new System.EventHandler(this.textBox1_Click);
             this.IPTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);

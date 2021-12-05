@@ -50,8 +50,8 @@ namespace Project1
 		}
 		private void button3_Click(object sender, EventArgs e)
 		{
-            IPTextbox.Text = "127.0.0.1";
-            PortTextbox.Text = "8080";
+            IPTextbox.Text = "127.1.1.2";
+            PortTextbox.Text = "4004";
         }
 		//************************************************************************
 
