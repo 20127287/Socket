@@ -80,8 +80,6 @@ namespace Project1
         private int buffer;
         private byte[] request;
         
-
-
         public Server(IPAddress _ip, int _port, string _db, int _buffer)
         {
             IP = _ip;
@@ -102,8 +100,10 @@ namespace Project1
         public void CloseAll()
         {
             foreach (Socket socket in ClientSockets)
+            {
                 socket.Close();
-            ClientSockets.Clear(); 
+            }
+            ClientSockets.Clear();
             serverSocket.Close();
         }
 
@@ -119,25 +119,30 @@ namespace Project1
             catch
             {
 
-            } 
+            }
         }
 
         private void ReceiveCallBack(IAsyncResult AR)
         {
-
             Socket socket = (Socket)AR.AsyncState;
             string req = readRequest(AR, socket);
             if (req != null)
             {
                 List<PhoneBookClient> phoneBookClients = new List<PhoneBookClient>();
-
                 ReadJson("DB/DanhBa.json", phoneBookClients);
 
+                if (req == "Disconnect")
+                {
+                    socket.Close();
+                    ClientSockets.Remove(socket);
+                }
+                else
                 if (req == "Display")
                 {
                     string convert = JsonConvert.SerializeObject(phoneBookClients);
 
                     socket.Send(Encoding.UTF8.GetBytes(convert));
+                    socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
                 }
                 else
                 {
@@ -151,13 +156,12 @@ namespace Project1
                             return;
                         }
                     socket.Send(Encoding.UTF8.GetBytes("false"));
-                    
+                    socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
                 }
-                socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
+                
             }
         }
 
-///////
         private string readRequest(IAsyncResult AR, Socket socket)
         {
             try

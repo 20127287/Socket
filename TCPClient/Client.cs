@@ -19,7 +19,7 @@ namespace TCPClient
         private int buffer;
         private byte[] buffers;
 
-        public Client(IPAddress ip, int port, int size = 5000)
+        public Client(IPAddress ip, int port, int size = 500000)
         {
             IP = ip;
             Port = port;
@@ -43,8 +43,13 @@ namespace TCPClient
             }
         }
 
+        public void Disconnect()
+        {
+            socket.Shutdown(SocketShutdown.Both);
+            socket.Disconnect(false);
+            socket.Close();
+        }
 
-        //////////
         public bool Send(string message)
         {
             try
@@ -59,8 +64,7 @@ namespace TCPClient
         }
 
         public byte[] Recieve()
-        {
-            
+        {            
             int bytes = socket.Receive(buffers, buffer, SocketFlags.None);
             byte[] req = new byte[bytes];
             Array.Copy(buffers, req, bytes);

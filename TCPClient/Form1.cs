@@ -73,9 +73,11 @@ namespace TCPClient
                 DisconnectedButton.Enabled = false;
                 PortTextbox.Enabled = true;
                 IPTextbox.Enabled = true;
-                MessageBox.Show("Đóng kết nối thành công", "THÔNG BÁO", MessageBoxButtons.OK);
                 run = false;
-                this.Close();
+                client.Send("Disconnect");
+                client.Disconnect();
+
+                MessageBox.Show("Đóng kết nối thành công", "THÔNG BÁO", MessageBoxButtons.OK);
             }
             else
                 MessageBox.Show("Chưa kết nối server!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -329,6 +331,9 @@ namespace TCPClient
                 PortTextbox.Enabled = true;
                 IPTextbox.Enabled = true;
                 run = false;
+                client.Send("Disconnect");
+                client.Disconnect();
+
                 this.Close();
             }
         }

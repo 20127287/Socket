@@ -84,8 +84,6 @@ namespace Project1
 			}
 		}
 
-
-
 		private void textBox2_Click(object sender, EventArgs e)
 		{
 			if (PortTextbox.Text != "")
@@ -113,8 +111,6 @@ namespace Project1
         private void TCPServer_Load(object sender, EventArgs e)
         {
 
-        }
-
-        
+        }        
     }
 }
