@@ -16,15 +16,15 @@ namespace TCPClient
         private Socket socket;
         private IPAddress IP;
         private int Port;
-        private int buffer;
-        private byte[] buffers;
+        private int Buffer;
+        private byte[] Buffers;
 
         public Client(IPAddress ip, int port, int size = 500000)
         {
             IP = ip;
             Port = port;
-            buffer = size;
-            buffers = new byte[buffer];
+            Buffer = size;
+            Buffers = new byte[Buffer];
         }
 
         public bool Connect()
@@ -65,9 +65,9 @@ namespace TCPClient
 
         public byte[] Recieve()
         {            
-            int bytes = socket.Receive(buffers, buffer, SocketFlags.None);
+            int bytes = socket.Receive(Buffers, Buffer, SocketFlags.None);
             byte[] req = new byte[bytes];
-            Array.Copy(buffers, req, bytes);
+            Array.Copy(Buffers, req, bytes);
 
             return req;
         }

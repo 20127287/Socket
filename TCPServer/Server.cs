@@ -73,29 +73,29 @@ namespace Project1
     class Server
     {
         private IPAddress IP;
-        private int port;
+        private int Port;
         private List<Socket> ClientSockets;
-        private Socket serverSocket;
-        private string db;
-        private int buffer;
-        private byte[] request;
+        private Socket ServerSocket;
+        private string DB;
+        private int Buffer;
+        private byte[] Request;
         
-        public Server(IPAddress _ip, int _port, string _db, int _buffer)
+        public Server(IPAddress ip, int port, string db, int buffer)
         {
-            IP = _ip;
-            port = _port;
-            db = _db;
-            buffer = _buffer;
-            request = new byte[buffer];
+            IP = ip;
+            Port = port;
+            DB = db;
+            Buffer = buffer;
+            Request = new byte[Buffer];
             ClientSockets = new List<Socket>();           
         }
 
         public void Start()
         {
-            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            serverSocket.Bind(new IPEndPoint(IP, port));
-            serverSocket.Listen(0);
-            serverSocket.BeginAccept(AcceptCallBack, null);
+            ServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            ServerSocket.Bind(new IPEndPoint(IP, Port));
+            ServerSocket.Listen(0);
+            ServerSocket.BeginAccept(Accept_Callback, null);
         }
         public void CloseAll()
         {
@@ -104,28 +104,25 @@ namespace Project1
                 socket.Close();
             }
             ClientSockets.Clear();
-            serverSocket.Close();
+            ServerSocket.Close();
         }
 
-        private void AcceptCallBack(IAsyncResult AR)
+        private void Accept_Callback(IAsyncResult Result)
         {
             try
             {
-                Socket socket = serverSocket.EndAccept(AR);
+                Socket socket = ServerSocket.EndAccept(Result);
                 ClientSockets.Add(socket);
-                socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
-                serverSocket.BeginAccept(AcceptCallBack, null);
+                socket.BeginReceive(Request, 0, Buffer, SocketFlags.None, Receive_Callback, socket);
+                ServerSocket.BeginAccept(Accept_Callback, null);
             }
-            catch
-            {
-
-            }
+            catch { }
         }
 
-        private void ReceiveCallBack(IAsyncResult AR)
+        private void Receive_Callback(IAsyncResult Result)
         {
-            Socket socket = (Socket)AR.AsyncState;
-            string req = readRequest(AR, socket);
+            Socket socket = (Socket)Result.AsyncState;
+            string req = ReadRequest(Result, socket);
             if (req != null)
             {
                 List<PhoneBookClient> phoneBookClients = new List<PhoneBookClient>();
@@ -142,7 +139,7 @@ namespace Project1
                     string convert = JsonConvert.SerializeObject(phoneBookClients);
 
                     socket.Send(Encoding.UTF8.GetBytes(convert));
-                    socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
+                    socket.BeginReceive(Request, 0, Buffer, SocketFlags.None, Receive_Callback, socket);
                 }
                 else
                 {
@@ -152,23 +149,23 @@ namespace Project1
                             string convert = JsonConvert.SerializeObject(phoneBookClient);
                             socket.Send(Encoding.UTF8.GetBytes(convert));
 
-                            socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
+                            socket.BeginReceive(Request, 0, Buffer, SocketFlags.None, Receive_Callback, socket);
                             return;
                         }
                     socket.Send(Encoding.UTF8.GetBytes("false"));
-                    socket.BeginReceive(request, 0, buffer, SocketFlags.None, ReceiveCallBack, socket);
+                    socket.BeginReceive(Request, 0, Buffer, SocketFlags.None, Receive_Callback, socket);
                 }
                 
             }
         }
 
-        private string readRequest(IAsyncResult AR, Socket socket)
+        private string ReadRequest(IAsyncResult Result, Socket socket)
         {
             try
             {
-                int received = socket.EndReceive(AR);
+                int received = socket.EndReceive(Result);
                 byte[] resbuffer = new byte[received];
-                Array.Copy(request, resbuffer, received);
+                Array.Copy(Request, resbuffer, received);
                 string req = Encoding.UTF8.GetString(resbuffer);
                 return req;
             }
